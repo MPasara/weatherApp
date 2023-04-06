@@ -2,6 +2,7 @@
 
 import 'package:beamer/beamer.dart';
 import 'package:flutter/widgets.dart';
+import 'package:weather_app/features/weather/presentation/pages/weather_page.dart';
 
 import '../../../example/presentation/pages/example_page.dart';
 import '../../../example/presentation/pages/form_example_page.dart';
@@ -58,6 +59,12 @@ class BeamerLocations extends BeamLocation<BeamState> {
           key: ValueKey('pagination_example_page'),
           title: 'PaginationExamplePage',
           child: PaginationExamplePage(),
+        ),
+      if (state.uri.pathSegments.contains('weather'))
+        const BeamPage(
+          key: ValueKey('weather_page'),
+          title: 'Weather',
+          child: WeatherPage(),
         ),
     ];
   }

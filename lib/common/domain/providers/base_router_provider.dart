@@ -4,8 +4,8 @@ import 'package:beamer/beamer.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:q_architecture/q_architecture.dart';
 
-import '../router/beamer_router.dart';
 import '../router/beamer_locations.dart';
+import '../router/beamer_router.dart';
 
 final baseRouterProvider = Provider<BaseRouter>((ref) {
   // final appRouter = AppRouter();

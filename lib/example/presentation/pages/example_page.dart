@@ -1,18 +1,12 @@
 // ignore_for_file: always_use_package_imports
 
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:q_architecture/q_architecture.dart';
+import 'package:weather_app/features/weather/presentation/pages/weather_page.dart';
 
-import '../../../common/utils/q_logger.dart';
-import '../../domain/notifiers/example_filters/example_filters_provider.dart';
 import '../../domain/notifiers/example_notifier/example_state_notifier.dart';
 import '../../domain/notifiers/example_simple_notifier/example_simple_state_notifier.dart';
-import 'form_example_page.dart';
-import 'pagination_example_page.dart';
-import 'pagination_stream_example_page.dart';
 
 class ExamplePage extends ConsumerWidget {
   static const routeName = '/';
@@ -29,7 +23,7 @@ class ExamplePage extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
+            /* Text(
               state.when(
                 data: (sentence) => sentence,
                 loading: () => 'Loading',
@@ -84,6 +78,10 @@ class ExamplePage extends ConsumerWidget {
               onPressed: () =>
                   ref.pushNamed(PaginationStreamExamplePage.routeName),
               child: const Text('Go to stream pagination'),
+            ), */
+            TextButton(
+              onPressed: () => ref.pushNamed(WeatherPage.routeName),
+              child: const Text('Go to weather'),
             ),
           ],
         ),
