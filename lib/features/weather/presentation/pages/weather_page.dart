@@ -9,7 +9,7 @@ class WeatherPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final searchController = TextEditingController();
-    final state = ref.watch(weatherInfoNotifierProvider(searchController.text));
+    final state = ref.watch(weatherInfoNotifierProvider);
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -33,12 +33,9 @@ class WeatherPage extends ConsumerWidget {
                     const SizedBox(width: 20),
                     ElevatedButton(
                       onPressed: () {
-                        searchController.text = 'boston';
                         ref
-                            .read(weatherInfoNotifierProvider(
-                              searchController.text,
-                            ).notifier)
-                            .getWeatherInfo();
+                            .read(weatherInfoNotifierProvider.notifier)
+                            .getWeatherInfo(searchController.text);
                         searchController.text = '';
                       },
                       child: const Text('Search'),
@@ -52,13 +49,37 @@ class WeatherPage extends ConsumerWidget {
                   loading: (_) => const Center(
                     child: CircularProgressIndicator(),
                   ),
-                  data: (weatherData) => Container(
-                    color: Colors.amber,
-                    width: 200,
-                    height: 200,
-                    child: Text(
-                      weatherData.data.cityName,
-                    ),
+                  data: (weatherData) => Column(
+                    children: [
+                      Text(
+                        'City -${weatherData.data.cityName}',
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                      Text(
+                        'Country -${weatherData.data.country}',
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                      Text(
+                        'Temp C -${weatherData.data.tempC} C',
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                      Text(
+                        'Temp F -${weatherData.data.tempF} F',
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                      Text(
+                        'Condition -${weatherData.data.condition}',
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                      Text(
+                        'Feels like C-${weatherData.data.feelsLikeC} C',
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                      Text(
+                        'Feels like F-${weatherData.data.feelsLikeF} F',
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                    ],
                   ),
                   error: (c) => Container(),
                 ),
