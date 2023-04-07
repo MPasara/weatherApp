@@ -16,7 +16,13 @@ final apiClientProvider = Provider<ApiClient>(
 );
 
 final dioProvider = Provider.family<Dio, String>((ref, baseUrl) => Dio(
-      BaseOptions(baseUrl: baseUrl),
+      BaseOptions(
+        baseUrl: baseUrl,
+        headers: {
+          'x-rapidapi-key':
+              '7d72957525msh0a3476e8238d3c2p12c493jsne6832b801c90',
+        },
+      ),
     )..interceptors.addAll(
         [
           LoggyDioInterceptor(requestBody: true, requestHeader: true),
