@@ -81,7 +81,7 @@ class ExamplePage extends ConsumerWidget {
             ), */
             TextButton(
               onPressed: () => ref.pushNamed(WeatherPage.routeName),
-              child: const Text('Go to weather'),
+              child: const Text('What\'s the weather up there?'),
             ),
           ],
         ),

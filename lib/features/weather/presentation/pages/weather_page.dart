@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:weather_app/example/presentation/widgets/weather_info_card.dart';
 import 'package:weather_app/features/weather/domain/providers/weather_info_notifier.dart';
 
 class WeatherPage extends ConsumerWidget {
@@ -44,64 +45,13 @@ class WeatherPage extends ConsumerWidget {
                 ),
                 //const Text('ode nesto'),
                 const SizedBox(height: 30),
-                state.map(
-                  initial: (_) => Container(),
-                  loading: (_) => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  data: (weatherData) => Column(
-                    children: [
-                      Text(
-                        'City -${weatherData.data.cityName}',
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                      Text(
-                        'Country -${weatherData.data.country}',
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                      Text(
-                        'Temp C -${weatherData.data.tempC} C',
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                      Text(
-                        'Temp F -${weatherData.data.tempF} F',
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                      Text(
-                        'Condition -${weatherData.data.condition}',
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                      Text(
-                        'Feels like C-${weatherData.data.feelsLikeC} C',
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                      Text(
-                        'Feels like F-${weatherData.data.feelsLikeF} F',
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    ],
-                  ),
-                  error: (c) => Container(),
-                ),
 
-                /* state.when(
+                state.when(
                   initial: () => const SizedBox(),
                   loading: () => const CircularProgressIndicator(),
-                  data: (weather) => Text(
-                    weather.cityName,
-                    style: const TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                  error: (e) => Center(
-                    child: Text(
-                      e.title,
-                      style: const TextStyle(
-                        color: Colors.red,
-                      ),
-                    ),
-                  ),
-                ), */
+                  data: (weather) => WeatherInfoCard(weather: weather),
+                  error: (failure) => Text(failure.title),
+                ),
               ],
             ),
           ),
